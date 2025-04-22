@@ -61,3 +61,50 @@ The analysis uses traffic data from Florida Department of Transportation (FDOT):
 3. Exploratory data analysis
 4. Predictive modeling
 5. Interactive visualization 
+
+## Deployment Options
+
+### Streamlit Cloud (Recommended)
+
+The easiest way to deploy this dashboard:
+
+1. Ensure your code is in a GitHub repository
+2. Visit [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub account
+4. Select your repository
+5. Set the path to `app/streamlit_app.py`
+6. Click "Deploy"
+
+### Heroku Deployment
+
+This repository includes configuration for Heroku deployment:
+
+```bash
+# Login to Heroku
+heroku login
+
+# Create a new Heroku app
+heroku create your-app-name
+
+# Push to Heroku
+git push heroku main
+
+# Open the app
+heroku open
+```
+
+### Local Development
+
+For local development or temporary sharing:
+
+```bash
+# Start the app locally with the helper script
+python run_streamlit.py
+
+# Or manually
+streamlit run app/streamlit_app.py
+```
+
+## Streamlined Dependencies
+
+The `requirements.txt` file has been optimized to include only the necessary packages for deployment. 

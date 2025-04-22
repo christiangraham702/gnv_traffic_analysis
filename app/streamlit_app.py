@@ -2278,7 +2278,6 @@ with spatial_tab3:
     **The network analysis approach:**
     - Modeled the entire road system as a mathematical graph with nodes and edges
     - Calculated centrality metrics to identify the most critical streets for network connectivity
-    - Found that removing high-betweenness streets would increase travel times by up to 35%
     - Identified streets that serve as key distribution points (high degree centrality)
     
     This network perspective reveals which streets are most critical for maintaining traffic flow,

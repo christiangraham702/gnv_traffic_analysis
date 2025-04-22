@@ -17,7 +17,7 @@ from streamlit_folium import folium_static
 # Set page config
 st.set_page_config(
     page_title="Traffic Analysis Dashboard",
-    page_icon="��",
+    page_icon="🚦",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -32,7 +32,7 @@ MODELS_DIR = os.path.join(ROOT_DIR, "models")
 # App title and description
 st.title("Traffic Analysis Dashboard")
 st.markdown("""
-This dashboard visualizes traffic data and predictive models for intersection delays.
+This project visualizes traffic data and predictive models for intersection delays.
 """)
 
 # Add executive summary
@@ -43,9 +43,9 @@ The analysis progresses from exploratory data analysis through feature engineeri
 
 **Key Conclusions:**
 - Traffic delays are most strongly influenced by total volume and signal timing efficiency
-- Spatial patterns reveal 5 distinct traffic zones 
-- Network analysis identified 12 critical connector streets that should be prioritized for improvement
-- Predictive models enable testing of intervention scenarios with high accuracy (92%)
+- Spatial patterns reveal 5  traffic zones 
+- Network analysis identified critical connector streets 
+- Predictive models enable testing of intervention scenarios with high accuracy (92%) but questionable generalizability
 
 
 """)

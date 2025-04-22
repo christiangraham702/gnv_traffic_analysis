@@ -209,7 +209,7 @@ with col2:
 st.header("Exploratory Data Analysis")
 
 st.markdown("""
-Our exploratory data analysis examined the distribution and relationships of traffic variables to understand key patterns:
+The exploratory data analysis examined the distribution and relationships of traffic variables to understand key patterns:
 
 **Key Findings:**
 - Traffic volumes show significant variation across different time periods (AM vs PM)
@@ -315,6 +315,91 @@ with eda_tab1:
             st.image(link_dist_img, caption="Distribution of Link Features. These plots examine broader traffic behavior, including average daily traffic (ADT), heavy vehicle presence, peak period dominance (AM vs PM), and directional flow imbalances. It provides insights into systemic traffic patterns along corridors, useful for macro-level analysis and model generalization.")
         else:
             st.info("Link feature distributions visualization not found.")
+    
+    # Add detailed interpretations of distribution patterns
+    st.subheader("📊 Key Insights from Distribution Patterns")
+    
+    st.markdown("""
+    ### Traffic Volume Distributions
+    
+    **Total_Vol, EW_Vol, and NS_Vol**:
+    - The volumes show approximately normal distributions, centered around their means
+    - Total_Vol averages ~783 vehicles with substantial variation (std 232.75)
+    - East-West volumes tend to be slightly lower than North-South volumes in many intersections
+    - This balance between directions is important for signal timing optimization
+    
+    **ADT_1314 (Average Daily Traffic)**:
+    - Extremely right-skewed distribution with most values clustered at lower traffic volumes
+    - This was included to show how the recorded ADT values are not representative of the traffic volume at the intersection and many ADT features do not include all the streets
+    
+    ### Traffic Balance Metrics 
+    
+    **Direction_Balance**:
+    - Heavily right-skewed, with most streets having relatively balanced bidirectional flow
+    - The long tail indicates a small subset of roads with significant directional imbalance
+    - These imbalanced streets likely serve as commuter corridors with distinct AM/PM patterns
+    - Roads with high Direction_Balance may benefit from adaptive signal timing that responds to time-of-day flow changes
+    
+    **EW_to_NS Ratio**:
+    - Distribution centered near 1.0 with a slight positive skew
+    - Most intersections have balanced directional flow (values near 1)
+    - Outliers with very high or low values represent intersections with dominant flows in one direction
+    - These outliers typically require special signal timing configurations to address flow asymmetry
+    
+    ### Signal Timing Metrics
+    
+    **Green_EW**:
+    - Shows a multi-modal distribution, suggesting different signal timing program groups
+    - Peaks at 30s, 40s, and 60s indicate standard timing patterns used across the network
+    - The discrete nature reflects standard signal timing practices rather than continuous optimization
+    
+    **Green_to_Demand_EW**:
+    - Strongly right-skewed with majority of values below 0.2
+    - Indicates most signals provide relatively low green time relative to demand
+    - The small subset with high values represents potentially over-serviced approaches
+    - Opportunities exist to rebalance signal timing at intersections with extreme values
+    
+    ### Peak Period Patterns
+    
+    **Peak_Ratio**:
+    - Centered slightly above 1.0 (mean 1.41), indicating PM peaks generally higher than AM peaks
+    - The normal shape suggests consistent commuting patterns throughout the network
+    - Values significantly different from 1.0 represent roads with strong directional patterns
+    
+    **AM_PM_Diff**:
+    - Centered near zero with slight negative skew
+    - Confirms that most roads have balanced AM/PM patterns, with a slight PM dominance
+    - The roads with extreme values represent special cases (e.g., school zones, employment centers)
+    
+    **AM/PM_Peak_Ratio**:
+    - Low values (concentrated between 0.05-0.15) indicate peaks are a small portion of daily traffic
+    - Suggests traffic is relatively spread throughout the day rather than heavily concentrated
+    - Roads with higher values experience more pronounced rush hour effects
+    
+    ### Special Conditions
+    
+    **Ped_Load**:
+    - Multi-modal distribution with peaks at ~40, 50, 60, and 90 seconds
+    - Reflects standard pedestrian crossing times for different intersection geometries
+    - Higher values correlate with larger intersections or those in pedestrian-heavy areas
+    - One of the biggest drivers of delays
+    
+    **Heavy_1314**:
+    - Extremely right-skewed with majority of values near zero
+    - Most roads have minimal heavy vehicle traffic (< 5%)
+    - Small subset of roads serve as freight corridors with significant truck percentages
+    - These freight routes require special consideration for signal timing and infrastructure maintenance
+    
+    ### Traffic Management Implications
+    
+    These distributions highlight several key opportunities for traffic management:
+    
+    1. Signal timing rebalancing for intersections with extreme Green_to_Demand_EW values
+    2. Directional improvements for the small subset of roads with high Direction_Balance
+    3. Special consideration for the few high-ADT corridors that carry disproportionate traffic loads
+    4. Adaptive timing solutions for intersections with significant AM/PM differences
+    5. Infrastructure prioritization for the limited number of heavy vehicle corridors
+    """)
 
 with eda_tab2:
     st.subheader("Feature Relationships")
@@ -1626,7 +1711,7 @@ with traffic_tab3:
 st.header("Spatial Analysis with ML")
 
 st.markdown("""
-Our spatial analysis applies advanced machine learning techniques to uncover geographic traffic patterns and predict 
+The spatial analysis applies advanced machine learning techniques to uncover geographic traffic patterns and predict 
 spatial congestion dynamics:
 
 **Advanced ML Approaches:**
@@ -1880,7 +1965,7 @@ with spatial_tab1:
     Geospatial clustering identifies areas with similar traffic patterns based on location and volume. 
     This reveals natural groupings of traffic hotspots and helps in targeted traffic management.
     
-    **Our clustering approach:**
+    **The clustering approach:**
     - Used K-means algorithm with standardized features to group similar road segments
     - Incorporated both geographic coordinates and traffic metrics (ADT, peak volumes)
     - Identified distinct traffic zones with unique characteristics (high-volume corridors, residential areas, etc.)
@@ -2190,7 +2275,7 @@ with spatial_tab3:
     Graph-based analysis treats the road network as a system of interconnected nodes (intersections) and edges (streets).
     This approach identifies critical connections, bottlenecks, and resilience factors in the traffic network.
     
-    **Our network analysis approach:**
+    **The network analysis approach:**
     - Modeled the entire road system as a mathematical graph with nodes and edges
     - Calculated centrality metrics to identify the most critical streets for network connectivity
     - Found that removing high-betweenness streets would increase travel times by up to 35%
@@ -2339,10 +2424,6 @@ with spatial_tab3:
 # NEW SECTION: Technical Implementation Details
 st.header("Technical Implementation Details")
 
-st.markdown("""
-This dashboard leverages a variety of Python libraries and data science techniques to implement the traffic analysis framework.
-Below is a detailed breakdown of how each analysis section was implemented.
-""")
 
 tech_tab1, tech_tab2, tech_tab3, tech_tab4 = st.tabs(["Data Processing", "Visualization", "Machine Learning", "Spatial Analysis"])
 
@@ -2356,10 +2437,6 @@ with tech_tab1:
         - Handles CSV and Parquet file formats through `read_csv()` and `read_parquet()`
         - Leverages groupby operations for aggregation (`df.groupby('STREET')['ADT_Valid'].mean()`)
     
-    ### Data Caching
-    - **Streamlit Caching**: Implemented through `@st.cache_data` and `@st.cache_resource` decorators
-        - Prevents redundant data loading and processing across sessions
-        - Example: `@st.cache_data` on `load_data()` function caches DataFrame results
     
     ### Feature Engineering Techniques
     - **Vectorized Operations**: Used pandas and numpy for efficient calculations

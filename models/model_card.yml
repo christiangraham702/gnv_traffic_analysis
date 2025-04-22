@@ -1,0 +1,44 @@
+
+# High Delay Prediction Model Card
+
+## Model Details
+- Model Type: RandomForestClassifier
+- Version: 1.0
+- Date Created: 2025-04-22
+
+## Model Parameters
+{'bootstrap': True, 'ccp_alpha': 0.0, 'class_weight': None, 'criterion': 'gini', 'max_depth': None, 'max_features': 'sqrt', 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 2, 'min_samples_split': 5, 'min_weight_fraction_leaf': 0.0, 'monotonic_cst': None, 'n_estimators': 800, 'n_jobs': None, 'oob_score': False, 'random_state': 42, 'verbose': 0, 'warm_start': False}
+
+## Performance Metrics
+- Accuracy: 1.0000
+- Precision: 1.0000
+- Recall: 1.0000
+- F1 Score: 1.0000
+- ROC-AUC: 1.0000
+- Cross-Validation F1 (Mean): 0.6600
+- Cross-Validation F1 (Std): 0.0952
+
+## Required Features
+['Total_Vol', 'EW_Vol', 'NS_Vol', 'EW_to_NS', 'Green_EW', 'Green_to_Demand_EW', 'Ped_Load', 'Period_Numeric']
+
+## Intended Use
+- Primary intended uses: Predict high delay (>60 seconds) at traffic intersections
+- Primary intended users: Traffic engineers, urban planners
+
+## Data
+- Training data: Intersection traffic data with engineered features
+- Evaluation data: 20% validation split stratified by intersection
+
+## Ethical Considerations
+- The model is trained on a limited sample of intersections
+- Predictions should be verified by traffic engineers before operational decisions
+- Model does not include demographic or personally identifiable information
+
+## Limitations
+- Model is trained on data from specific intersections and may not generalize well to very different locations
+- The training data may not capture all seasonal variations in traffic patterns
+- External factors like construction, special events, or weather are not accounted for
+
+## Caveats
+- Predictions are probabilistic and should be used as guidance rather than absolute truth
+- Model should be retrained periodically as traffic patterns change

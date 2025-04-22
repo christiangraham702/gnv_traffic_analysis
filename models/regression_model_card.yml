@@ -1,0 +1,46 @@
+
+# Delay Prediction Regression Model Card
+
+## Model Details
+- Model Type: RandomForestRegressor
+- Version: 1.0
+- Date Created: 2025-04-22
+
+## Model Parameters
+{'bootstrap': True, 'ccp_alpha': 0.0, 'criterion': 'squared_error', 'max_depth': None, 'max_features': 1.0, 'max_leaf_nodes': None, 'max_samples': None, 'min_impurity_decrease': 0.0, 'min_samples_leaf': 1, 'min_samples_split': 5, 'min_weight_fraction_leaf': 0.0, 'monotonic_cst': None, 'n_estimators': 200, 'n_jobs': None, 'oob_score': False, 'random_state': 42, 'verbose': 0, 'warm_start': False}
+
+## Performance Metrics
+- Mean Squared Error (MSE): 3.3010
+- Root Mean Squared Error (RMSE): 1.8169
+- Mean Absolute Error (MAE): 1.3249
+- R² Score: 0.9851
+- Mean Absolute Percentage Error (MAPE): 3.3317
+- Cross-Validation R² (Mean): 0.9599
+- Cross-Validation R² (Std): 0.0318
+- Cross-Validation RMSE (Mean): 3.3020
+- Cross-Validation RMSE (Std): 0.6530
+
+## Required Features
+['Total_Vol', 'EW_Vol', 'NS_Vol', 'EW_to_NS', 'Green_EW', 'Green_to_Demand_EW', 'Ped_Load', 'Period_Numeric']
+
+## Intended Use
+- Primary intended uses: Predict exact delay (seconds per vehicle) at traffic intersections
+- Primary intended users: Traffic engineers, urban planners
+
+## Data
+- Training data: Intersection traffic data with engineered features
+- Evaluation data: 20% validation split stratified by intersection
+
+## Ethical Considerations
+- The model is trained on a limited sample of intersections
+- Predictions should be verified by traffic engineers before operational decisions
+- Model does not include demographic or personally identifiable information
+
+## Limitations
+- Model is trained on data from specific intersections and may not generalize well to very different locations
+- The training data may not capture all seasonal variations in traffic patterns
+- External factors like construction, special events, or weather are not accounted for
+
+## Caveats
+- Predictions have inherent uncertainty as shown by the model's RMSE
+- Model should be retrained periodically as traffic patterns change

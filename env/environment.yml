@@ -1,0 +1,21 @@
+name: traffic-analysis
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pandas
+  - numpy
+  - pyarrow
+  - geopandas
+  - folium
+  - plotly
+  - scikit-learn
+  - shap
+  - streamlit
+  - matplotlib
+  - seaborn
+  - jupyter
+  - pip
+  - pip:
+    - streamlit-folium 

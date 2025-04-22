@@ -107,10 +107,6 @@ pytz==2024.2
 PyYAML==6.0.2
 referencing==0.36.2
 regex==2024.11.6
-# Editable install with no version control (reggie==0.1.0)
--e /Users/christiangraham/Desktop/reggie
-# Editable install with no version control (reginald==0.1)
--e /Users/christiangraham/Desktop/reginald
 requests==2.32.3
 requests-toolbelt==1.0.0
 rich==13.9.4

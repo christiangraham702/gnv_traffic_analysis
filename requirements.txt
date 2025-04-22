@@ -12,3 +12,4 @@ scikit-learn==1.6.1
 geopandas==1.0.1
 shap==0.47.2
 pyarrow==19.0.1
+networkx==3.2.1

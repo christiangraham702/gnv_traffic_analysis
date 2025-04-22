@@ -463,7 +463,7 @@ I developed two complementary predictive models to understand and forecast traff
 - **Classification Model**: Predicts the probability of high delay (>60 seconds/vehicle) at intersections
 - **Regression Model**: Forecasts exact delay values in seconds per vehicle
 - Used Random Forest algorithms that capture complex, non-linear traffic relationships
-- Achieved 92% accuracy for classification and R² of 0.985 for regression
+- 92% accuracy for classification and R² of 0.985 for regression, small sample size likely will not generalize well
 - Identified key predictive factors: total volume, signal timing efficiency, and directional flow ratios
 
 The models each ran into to their own issues, primarily due to the small sample size of the dataset especially for the classification model that used the intersection data.
@@ -1439,11 +1439,6 @@ with traffic_tab1:
             st.plotly_chart(fig, use_container_width=True)
         
         # Display correlation heatmap
-        if traffic_heatmap:
-            st.subheader("Traffic Flow Correlation")
-            st.image(traffic_heatmap, caption="Correlation Matrix of Traffic Flow Metrics")
-        else:
-            st.info("Traffic correlation heatmap not available.")
     else:
         st.warning("Traffic flow metrics not available. Run the traffic flow analysis script to generate data.")
 
@@ -2042,15 +2037,15 @@ with spatial_tab2:
     Spatial regression models predict traffic volumes based on location and network characteristics.
     These models help identify spatial factors influencing traffic patterns and forecast future conditions.
     
-    **Our spatial regression approach:**
+    **This spatial regression approach:**
     - Transformed geographic coordinates into meaningful predictive features using trigonometric functions
     - Implemented Ridge regression to handle multicollinearity in spatial features
-    - Achieved strong predictive performance with R² scores above 0.75 for most areas
-    - Identified key spatial factors that influence traffic volume distribution
+    - Had poor predictive performance with R² scores around 0.28 for most areas
+    - Small sample size likely contributed to the poor performance
+    - Lack of spatial autocorrelation in the data likely contributed to the poor performance
+    - More contextual features likely would improve the model
     
-    The model allows traffic planners to predict expected traffic volumes at any location in the network,
-    which is particularly valuable for planning new roads or developments. Try using the prediction tool below
-    to see estimated traffic volumes at different locations.
+  
     """)
     
     if model_created and model_results is not None:
